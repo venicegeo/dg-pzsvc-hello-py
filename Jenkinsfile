@@ -15,7 +15,6 @@ node {
 
   stage('Archive') {
     sh """
-      . /usr/bin/python3/enable
       python -m venv .env
       . .env/bin/activate
       make -p vendor
