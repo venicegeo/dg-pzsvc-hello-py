@@ -6,6 +6,7 @@ node {
   def root = pwd()
 
   stage('Setup') {
+    deleteDir()
     git([
       url: env.GIT_URL ? env.GIT_URL : 'https://github.com/venicegeo/dg-pzsvc-hello-py',
       branch: "master"
@@ -24,35 +25,6 @@ node {
 
   stage('CI Deploy') {
     cfPush()
-    zap {
-      threadfixId = THREADFIX_ID
-    }
-    cfBgDeploy()
   }
 
-  stage('Integration Testing') {
-    postman()
-  }
-
-  stage('Reset') {
-    git([
-      url: env.GIT_URL ? env.GIT_URL : 'https://github.com/venicegeo/dg-pzsvc-hello-py',
-      branch: "master"
-    ])
-  }
-
-  stage('Staging Deploy') {
-    cfPush {
-      cfDomain  = 'TBD'
-      cfSpace   = 'TBD'
-    }
-    cfBgDeploy {
-      cfDomain  = 'TBD'
-      cfSpace   = 'TBD'
-    }
-  }
-
-  stage('Cleanup') {
-    deleteDir()
-  }
 }
