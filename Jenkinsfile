@@ -15,7 +15,7 @@ node {
 
   stage('Archive') {
     sh """
-      python -m venv .env
+      python3 -m venv --without-pip .env
       . .env/bin/activate
       make -p vendor
       pip install -d vendor -r requirements.txt
