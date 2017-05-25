@@ -15,7 +15,7 @@ node {
 
   stage('Archive') {
     sh """
-      python3 -m venv --without-pip .env
+      virtualenv --python=/usr/bin/python3 .env
       . .env/bin/activate
       make -p main.py
       pip install -r requirements.txt
