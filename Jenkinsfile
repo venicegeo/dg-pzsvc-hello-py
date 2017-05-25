@@ -22,7 +22,7 @@ node {
     """
   }
 
-  stage('CI Deploy') {
+  stage('Staging Deploy') {
     cfPush()
   }
 
