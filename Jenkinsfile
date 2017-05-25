@@ -17,8 +17,8 @@ node {
     sh """
       python3 -m venv --without-pip .env
       . .env/bin/activate
-      make -p vendor
-      pip install -d vendor -r requirements.txt
+      make -p main.py
+      pip install -r requirements.txt
     """
   }
 
